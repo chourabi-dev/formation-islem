@@ -1,0 +1,71 @@
+<!--  email:string="tchourabi@gmail.com";
+  password="123456";
+  price:number=55236985;
+  theDoorISOpen:boolean = false;
+  today:Date = new Date();
+
+  userOBJ:any = { username:"chourabi", phone:"93863732" };
+
+  employees:string[] = [
+    'chourabi taher 1',
+    'chourabi taher 2',
+    'chourabi taher 3',
+    'chourabi taher 4',
+    'chourabi taher 6' 
+  ]-->
+<!--  partie 
+  <p>
+    <strong>email:</strong> {{ email }}
+  </p>
+  <p>
+    <strong>password:</strong> {{ password }}
+  </p>
+  <p>
+    <strong>Price:</strong> {{ price | number }}
+  </p>
+  <p>
+    <strong>Today:</strong> {{ today | date }}
+  </p>
+
+  <hr>
+
+  <h3>User</h3>
+  {{ userOBJ.username }} / {{ userOBJ.phone }}
+
+
+  <h3>Employees</h3>
+
+  <table style="width: 100%;">
+    <tr *ngFor="let e of employees">
+      <td>{{ e.id }}</td>
+      <td>
+        <span [ngClass]="   e.year > 2000 ? 'new-employee' : 'old-employee'    " >{{ e.fullname }}</span>
+
+        <span *ngIf=" e.year < 2000"   style="color: red;">*</span>
+
+
+      </td>
+      <td>{{ e.email }}</td>
+      <td>{{ e.year }}</td>
+      
+    </tr>
+  </table>  1 -->
+
+
+  <!-- partie 2 -->
+
+  <app-navbar></app-navbar>
+
+  <div class="container mt-5 mb-b">
+    <div class="row">
+      <div class="col-12 col-sm-3">
+        <app-sidemenu></app-sidemenu>
+      </div>
+      <div class="col-12 col-sm-9">
+        <app-article  [data]="article"  *ngFor="let article of articles"  ></app-article> 
+      </div>
+    </div>
+  </div>
+
+
+  <app-footer></app-footer>
