@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+
+
+<div class="container mt-5">
+    <h1>Team page</h1>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, facere? Quas neque optio voluptatem quisquam, vero repellat fuga quo quaerat? Modi dolorum excepturi impedit amet ad sapiente minima assumenda tempora?
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, facere? Quas neque optio voluptatem quisquam, vero repellat fuga quo quaerat? Modi dolorum excepturi impedit amet ad sapiente minima assumenda tempora?
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, facere? Quas neque optio voluptatem quisquam, vero repellat fuga quo quaerat? Modi dolorum excepturi impedit amet ad sapiente minima assumenda tempora?
+    </p>
+    <ul class="nav nav-tabs"> 
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/team/company">Company</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/team/employees">Employees</a>
+        </li> 
+      </ul>
+
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+
+
+    <ul>
+        <li *ngFor="let t of teams">
+            <h3>{{ t.name }}</h3>
+            <p>{{ t.description }}</p>
+            <a routerLink="/team/details/{{t.id}}" class="btn btn-sm btn-primary">More details</a>
+        </li>
+    </ul>
+
+
+
+ 
+    
+</div>

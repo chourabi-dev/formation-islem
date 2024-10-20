@@ -18,6 +18,9 @@ export class MapComponent implements AfterViewInit {
     popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
+  lingeDATA:any[] = [];
+
+
   initMap(): void {
      
     
@@ -50,13 +53,31 @@ export class MapComponent implements AfterViewInit {
       console.log(res);
 
       res.map((m:any)=>{
+        this.lingeDATA.push([m.latitude,m.longitude]);
         leaflet.marker([m.latitude,m.longitude]).setIcon(this.defaultIcon).addTo(this.map);
       })
+
+
+
       
+var polyline = leaflet.polyline(this.lingeDATA, {color: 'blue'}).addTo(this.map);
+
+  // Optionally, zoom the map to fit the line
+  this.map.fitBounds(polyline.getBounds());
+        
     })
   }
   ngAfterViewInit(): void {
    this.initMap();
 
+   setTimeout(() => {
+    this.animate();
+   }, 5000);
+  }
+
+
+  animate(){
+    // this.map.setView([51.505, -0.09], 13);
+     this.map.panTo([51.505, -0.09]);
   }
 }
