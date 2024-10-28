@@ -1,0 +1,22 @@
+<div class="container mt-5">
+
+    <div class="row mb-5" *ngIf=" loading ">
+        <div class="col-12">
+            <h2 class="text-center">Please wait...</h2>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-4 mb-3" *ngFor="let u of users">
+            <div class="card">
+                <div class="card-body">
+                    <h3>{{ u.name }}</h3>
+                    <p class="text-sm text-muted">
+                        {{ u.email }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

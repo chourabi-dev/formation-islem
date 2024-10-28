@@ -26,12 +26,12 @@ export class MapComponent implements AfterViewInit {
     
     this.map = leaflet.map('map', {
       center: [ 30,10],
-      zoom: 3
+      zoom: 15
     });
 
 
     const tiles = leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
+      maxZoom: 30,
       minZoom: 3,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
@@ -54,7 +54,7 @@ export class MapComponent implements AfterViewInit {
 
       res.map((m:any)=>{
         this.lingeDATA.push([m.latitude,m.longitude]);
-        leaflet.marker([m.latitude,m.longitude]).setIcon(this.defaultIcon).addTo(this.map);
+        //leaflet.marker([m.latitude,m.longitude]).setIcon(this.defaultIcon).addTo(this.map);
       })
 
 
@@ -69,15 +69,39 @@ var polyline = leaflet.polyline(this.lingeDATA, {color: 'blue'}).addTo(this.map)
   }
   ngAfterViewInit(): void {
    this.initMap();
+   this.animate();
 
-   setTimeout(() => {
-    this.animate();
-   }, 5000);
   }
 
 
   animate(){
-    // this.map.setView([51.505, -0.09], 13);
-     this.map.panTo([51.505, -0.09]);
+    
+    this.map.setZoom(20);
+
+      let index = 0;
+      
+      let tmpMarker:any = null;
+
+      setInterval(() => {
+        setTimeout(() => {
+          if( index < this.lingeDATA.length ){
+
+            if (tmpMarker != null) {
+              this.map.removeLayer(tmpMarker);
+            }
+
+            tmpMarker = leaflet.marker(this.lingeDATA[index]).setIcon(this.defaultIcon)
+
+            // add marker to map
+            tmpMarker.addTo(this.map);
+            this.map.panTo(this.lingeDATA[index]);
+            index++;
+
+            // remove marker from map
+            
+          
+          }
+        }, 1000);
+      }, 1000);
   }
 }
